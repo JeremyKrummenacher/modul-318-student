@@ -4,9 +4,9 @@
 
     using Newtonsoft.Json;
 
-    public class Stations
+    /*public class Stations
     {
         [JsonProperty("stations", NullValueHandling = NullValueHandling.Ignore)]
         public List<Station> StationList { get; set; }
-    }
+    }*/
 }

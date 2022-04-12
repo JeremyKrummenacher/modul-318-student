@@ -1,7 +1,8 @@
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
 namespace SwissTransport.Models
 {
-    using Newtonsoft.Json;
-
     public class Station
     {
         [JsonProperty("id")]
@@ -18,5 +19,11 @@ namespace SwissTransport.Models
 
         [JsonProperty("distance")]
         public double? Distance { get; set; }
+    }
+
+    public class Stations
+    {
+        [JsonProperty("stations")]
+        public List<Station> StationList { get; set; }
     }
 }
