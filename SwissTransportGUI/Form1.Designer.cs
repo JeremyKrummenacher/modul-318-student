@@ -38,7 +38,8 @@
             this.ankunft = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gleis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verbindungenBox = new System.Windows.Forms.GroupBox();
-            this.email = new System.Windows.Forms.Button();
+            this.moreConnections = new System.Windows.Forms.Button();
+            this.emailBtn = new System.Windows.Forms.Button();
             this.nachComboBox = new System.Windows.Forms.ComboBox();
             this.vonComboBox = new System.Windows.Forms.ComboBox();
             this.timePicker = new System.Windows.Forms.DateTimePicker();
@@ -61,7 +62,6 @@
             this.aufkarteBtn = new System.Windows.Forms.Button();
             this.stationcomboBox = new System.Windows.Forms.ComboBox();
             this.abfahrtensuchen = new System.Windows.Forms.Button();
-            this.moreConnections = new System.Windows.Forms.Button();
             this.Fahrplan.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -144,7 +144,7 @@
             // verbindungenBox
             // 
             this.verbindungenBox.Controls.Add(this.moreConnections);
-            this.verbindungenBox.Controls.Add(this.email);
+            this.verbindungenBox.Controls.Add(this.emailBtn);
             this.verbindungenBox.Controls.Add(this.nachComboBox);
             this.verbindungenBox.Controls.Add(this.vonComboBox);
             this.verbindungenBox.Controls.Add(this.timePicker);
@@ -164,18 +164,31 @@
             this.verbindungenBox.TabStop = false;
             this.verbindungenBox.Text = "Verbindungen anzeigen";
             // 
-            // email
+            // moreConnections
             // 
-            this.email.Location = new System.Drawing.Point(231, 171);
-            this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(143, 40);
-            this.email.TabIndex = 12;
-            this.email.Text = "email schicken";
-            this.email.UseVisualStyleBackColor = true;
-            this.email.Click += new System.EventHandler(this.email_Click);
+            this.moreConnections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.moreConnections.Location = new System.Drawing.Point(688, 191);
+            this.moreConnections.Name = "moreConnections";
+            this.moreConnections.Size = new System.Drawing.Size(212, 33);
+            this.moreConnections.TabIndex = 13;
+            this.moreConnections.Text = "weitere Verbindungen sehen";
+            this.moreConnections.UseVisualStyleBackColor = true;
+            this.moreConnections.Click += new System.EventHandler(this.moreConnections_Click);
+            // 
+            // emailBtn
+            // 
+            this.emailBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.emailBtn.Location = new System.Drawing.Point(231, 171);
+            this.emailBtn.Name = "emailBtn";
+            this.emailBtn.Size = new System.Drawing.Size(143, 40);
+            this.emailBtn.TabIndex = 12;
+            this.emailBtn.Text = "email schicken";
+            this.emailBtn.UseVisualStyleBackColor = true;
+            this.emailBtn.Click += new System.EventHandler(this.emailBtn_Click);
             // 
             // nachComboBox
             // 
+            this.nachComboBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.nachComboBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nachComboBox.FormattingEnabled = true;
             this.nachComboBox.Location = new System.Drawing.Point(427, 39);
@@ -198,6 +211,7 @@
             // 
             // timePicker
             // 
+            this.timePicker.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.timePicker.CalendarFont = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.timePicker.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.timePicker.Location = new System.Drawing.Point(427, 103);
@@ -208,6 +222,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.Location = new System.Drawing.Point(18, 171);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -220,6 +235,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(364, 105);
@@ -250,6 +266,7 @@
             // 
             // nachLabel
             // 
+            this.nachLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.nachLabel.AutoSize = true;
             this.nachLabel.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nachLabel.Location = new System.Drawing.Point(364, 43);
@@ -272,11 +289,11 @@
             // 
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Size = new System.Drawing.Size(906, 567);
+            this.tabPage2.Size = new System.Drawing.Size(906, 572);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stationssuche";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -292,7 +309,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 199);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(900, 364);
+            this.dataGridView2.Size = new System.Drawing.Size(900, 369);
             this.dataGridView2.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -386,17 +403,6 @@
             this.abfahrtensuchen.UseVisualStyleBackColor = true;
             this.abfahrtensuchen.Click += new System.EventHandler(this.abfahrtensuchen_Click);
             // 
-            // moreConnections
-            // 
-            this.moreConnections.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.moreConnections.Location = new System.Drawing.Point(688, 191);
-            this.moreConnections.Name = "moreConnections";
-            this.moreConnections.Size = new System.Drawing.Size(212, 33);
-            this.moreConnections.TabIndex = 13;
-            this.moreConnections.Text = "weitere Verbindungen sehen";
-            this.moreConnections.UseVisualStyleBackColor = true;
-            this.moreConnections.Click += new System.EventHandler(this.moreConnections_Click);
-            // 
             // MyTransportation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -455,7 +461,7 @@
         private DataGridViewTextBoxColumn abfahrt;
         private DataGridViewTextBoxColumn ankunft;
         private DataGridViewTextBoxColumn gleis;
-        private Button email;
+        private Button emailBtn;
         private Button moreConnections;
     }
 }

@@ -9,7 +9,7 @@ namespace SwissTransportGUI
         public MyTransportation()
         {
             InitializeComponent();
-
+            emailBtn.Enabled = false;
         }
         public ITransport transport = new Transport();
         public int anzeigeAnzahl = 4;
@@ -40,6 +40,7 @@ namespace SwissTransportGUI
                 {
                     dataGridView1.Rows.Add(einzelneverbindung.From.Station.Name, einzelneverbindung.To.Station.Name, Convert.ToDateTime(einzelneverbindung.From.Departure).ToString("HH:mm"), Convert.ToDateTime(einzelneverbindung.To.Arrival).ToString("HH:mm"), einzelneverbindung.To.Platform);
                 }
+                emailBtn.Enabled = true;
             }
             catch
             {
@@ -153,7 +154,7 @@ namespace SwissTransportGUI
 
         }
 
-        private void email_Click(object sender, EventArgs e)
+        private void emailBtn_Click(object sender, EventArgs e)
         {
             Email email = new Email();
             email.ShowDialog();
