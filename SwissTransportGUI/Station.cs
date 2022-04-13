@@ -23,6 +23,14 @@ namespace SwissTransportGUI
             Connections verbindungen = transport.GetConnections(von, nach, datumstring, zeitstring);
             return verbindungen;
         }
+
+        public Connections StationMehrVerbindungSuche(string von, string nach, DateTime datum, DateTime uhrzeit, int anzahl)
+        {
+            string datumstring = datum.ToString("yyyy-MM-dd");
+            string zeitstring = uhrzeit.ToString("HH:mm");
+            Connections verbindungen = transport.GetMoreConnections(von, nach, datumstring, zeitstring, anzahl);
+            return verbindungen;
+        }
         public List<Station> Vorschlaege(string texteingabe)
         {
             try

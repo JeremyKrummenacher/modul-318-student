@@ -1,5 +1,6 @@
 using SwissTransport.Core;
 using SwissTransport.Models;
+using System.Diagnostics;
 
 namespace SwissTransportGUI
 {
@@ -8,10 +9,10 @@ namespace SwissTransportGUI
         public MyTransportation()
         {
             InitializeComponent();
+
         }
         public ITransport transport = new Transport();
-
-
+        public int anzeigeAnzahl = 4;
         private void MyTransportation_Load(object sender, EventArgs e)
         {
             this.timePicker.CustomFormat = "hh:mm";
@@ -35,9 +36,9 @@ namespace SwissTransportGUI
             {
                 List<Connection> verbindungrückgabliste = verbindungenreturns.ConnectionList;
 
-                foreach (Connection einzelneverbindung in verbindungrückgabliste.Take(4))
+                foreach (Connection einzelneverbindung in verbindungrückgabliste.Take(anzeigeAnzahl))
                 {
-                    dataGridView1.Rows.Add(einzelneverbindung.From.Station.Name, einzelneverbindung.To.Station.Name, Convert.ToDateTime(einzelneverbindung.From.Departure).ToString("HH:mm"), Convert.ToDateTime(einzelneverbindung.To.Arrival).ToString("HH:mm"),einzelneverbindung.To.Delay, einzelneverbindung.To.Platform);
+                    dataGridView1.Rows.Add(einzelneverbindung.From.Station.Name, einzelneverbindung.To.Station.Name, Convert.ToDateTime(einzelneverbindung.From.Departure).ToString("HH:mm"), Convert.ToDateTime(einzelneverbindung.To.Arrival).ToString("HH:mm"), einzelneverbindung.To.Platform);
                 }
             }
             catch
@@ -142,8 +143,61 @@ namespace SwissTransportGUI
 
         private void aufkarteBtn_Click(object sender, EventArgs e)
         {
-            Karte karte = new Karte(stationcomboBox.Text);
-            karte.ShowDialog();
+            try
+            {
+                Station station = transport.GetStations(stationcomboBox.Text).StationList.First();
+                Process.Start(new ProcessStartInfo { FileName = @"https://www.google.com/maps/search/?api=1&query=" + station.Coordinate.XCoordinate.ToString().Replace(",", ".") + "," + station.Coordinate.YCoordinate.ToString().Replace(",", "."), UseShellExecute = true });
+            }
+            catch { MessageBox.Show("keine Station gefunden"); }
+
+
+        }
+
+        private void email_Click(object sender, EventArgs e)
+        {
+            Email email = new Email();
+            email.ShowDialog();
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dataIndexNo = dataGridView1.Rows[e.RowIndex].Index.ToString();
+            string cellValue = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            MessageBox.Show("The row index = " + dataIndexNo.ToString() + " and the row data in second column is: "
+                + cellValue.ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void moreConnections_Click(object sender, EventArgs e)
+        {
+            int anzeige = anzeigeAnzahl + 4;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            Stationssuche neueSuche = new Stationssuche();
+            string von = vonComboBox.Text;
+            string nach = nachComboBox.Text;
+            DateTime zeitDatum = dateTimePicker1.Value;
+            DateTime uhrzeit = timePicker.Value;
+
+            Connections verbindungenreturns = neueSuche.StationMehrVerbindungSuche(von, nach, zeitDatum, uhrzeit, anzeige);
+            try
+            {
+                List<Connection> verbindungrückgabliste = verbindungenreturns.ConnectionList;
+
+                foreach (Connection einzelneverbindung in verbindungrückgabliste)
+                {
+                    dataGridView1.Rows.Add(einzelneverbindung.From.Station.Name, einzelneverbindung.To.Station.Name, Convert.ToDateTime(einzelneverbindung.From.Departure).ToString("HH:mm"), Convert.ToDateTime(einzelneverbindung.To.Arrival).ToString("HH:mm"), einzelneverbindung.To.Platform);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Keine Verbindung gefunden");
+                return;
+            }
         }
     }
 }

@@ -36,9 +36,9 @@
             this.Nach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.abfahrt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ankunft = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verspätung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gleis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verbindungenBox = new System.Windows.Forms.GroupBox();
+            this.email = new System.Windows.Forms.Button();
             this.nachComboBox = new System.Windows.Forms.ComboBox();
             this.vonComboBox = new System.Windows.Forms.ComboBox();
             this.timePicker = new System.Windows.Forms.DateTimePicker();
@@ -54,9 +54,14 @@
             this.nummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.bahnhof = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.distanz = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.aufkarteBtn = new System.Windows.Forms.Button();
             this.stationcomboBox = new System.Windows.Forms.ComboBox();
             this.abfahrtensuchen = new System.Windows.Forms.Button();
-            this.aufkarteBtn = new System.Windows.Forms.Button();
+            this.moreConnections = new System.Windows.Forms.Button();
             this.Fahrplan.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -64,6 +69,7 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // Fahrplan
@@ -99,7 +105,6 @@
             this.Nach,
             this.abfahrt,
             this.ankunft,
-            this.verspätung,
             this.gleis});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 228);
@@ -108,6 +113,7 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(900, 335);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
             // Von
             // 
@@ -130,18 +136,15 @@
             this.ankunft.HeaderText = "Ankunft";
             this.ankunft.Name = "ankunft";
             // 
-            // verspätung
-            // 
-            this.verspätung.HeaderText = "Verspätung";
-            this.verspätung.Name = "verspätung";
-            // 
             // gleis
             // 
-            this.gleis.HeaderText = "Gleis";
+            this.gleis.HeaderText = "Gleis/Kante";
             this.gleis.Name = "gleis";
             // 
             // verbindungenBox
             // 
+            this.verbindungenBox.Controls.Add(this.moreConnections);
+            this.verbindungenBox.Controls.Add(this.email);
             this.verbindungenBox.Controls.Add(this.nachComboBox);
             this.verbindungenBox.Controls.Add(this.vonComboBox);
             this.verbindungenBox.Controls.Add(this.timePicker);
@@ -160,6 +163,16 @@
             this.verbindungenBox.TabIndex = 0;
             this.verbindungenBox.TabStop = false;
             this.verbindungenBox.Text = "Verbindungen anzeigen";
+            // 
+            // email
+            // 
+            this.email.Location = new System.Drawing.Point(231, 171);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(143, 40);
+            this.email.TabIndex = 12;
+            this.email.Text = "email schicken";
+            this.email.UseVisualStyleBackColor = true;
+            this.email.Click += new System.EventHandler(this.email_Click);
             // 
             // nachComboBox
             // 
@@ -299,6 +312,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dataGridView3);
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.aufkarteBtn);
             this.groupBox1.Controls.Add(this.stationcomboBox);
             this.groupBox1.Controls.Add(this.abfahrtensuchen);
@@ -309,6 +324,48 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Station suchen";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bahnhof,
+            this.distanz});
+            this.dataGridView3.Location = new System.Drawing.Point(624, 45);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowTemplate.Height = 25;
+            this.dataGridView3.Size = new System.Drawing.Size(259, 150);
+            this.dataGridView3.TabIndex = 5;
+            // 
+            // bahnhof
+            // 
+            this.bahnhof.HeaderText = "Bahnhof";
+            this.bahnhof.Name = "bahnhof";
+            // 
+            // distanz
+            // 
+            this.distanz.HeaderText = "Distanz";
+            this.distanz.Name = "distanz";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(624, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(259, 28);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Die nächst gelegene Station suchen";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // aufkarteBtn
+            // 
+            this.aufkarteBtn.Location = new System.Drawing.Point(18, 78);
+            this.aufkarteBtn.Name = "aufkarteBtn";
+            this.aufkarteBtn.Size = new System.Drawing.Size(259, 28);
+            this.aufkarteBtn.TabIndex = 3;
+            this.aufkarteBtn.Text = "Station auf der Karte sehen";
+            this.aufkarteBtn.UseVisualStyleBackColor = true;
+            this.aufkarteBtn.Click += new System.EventHandler(this.aufkarteBtn_Click);
             // 
             // stationcomboBox
             // 
@@ -321,7 +378,7 @@
             // 
             // abfahrtensuchen
             // 
-            this.abfahrtensuchen.Location = new System.Drawing.Point(295, 44);
+            this.abfahrtensuchen.Location = new System.Drawing.Point(283, 45);
             this.abfahrtensuchen.Name = "abfahrtensuchen";
             this.abfahrtensuchen.Size = new System.Drawing.Size(154, 27);
             this.abfahrtensuchen.TabIndex = 1;
@@ -329,15 +386,16 @@
             this.abfahrtensuchen.UseVisualStyleBackColor = true;
             this.abfahrtensuchen.Click += new System.EventHandler(this.abfahrtensuchen_Click);
             // 
-            // aufkarteBtn
+            // moreConnections
             // 
-            this.aufkarteBtn.Location = new System.Drawing.Point(18, 78);
-            this.aufkarteBtn.Name = "aufkarteBtn";
-            this.aufkarteBtn.Size = new System.Drawing.Size(259, 28);
-            this.aufkarteBtn.TabIndex = 3;
-            this.aufkarteBtn.Text = "Stationen auf der Karte sehen";
-            this.aufkarteBtn.UseVisualStyleBackColor = true;
-            this.aufkarteBtn.Click += new System.EventHandler(this.aufkarteBtn_Click);
+            this.moreConnections.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.moreConnections.Location = new System.Drawing.Point(688, 191);
+            this.moreConnections.Name = "moreConnections";
+            this.moreConnections.Size = new System.Drawing.Size(212, 33);
+            this.moreConnections.TabIndex = 13;
+            this.moreConnections.Text = "weitere Verbindungen sehen";
+            this.moreConnections.UseVisualStyleBackColor = true;
+            this.moreConnections.Click += new System.EventHandler(this.moreConnections_Click);
             // 
             // MyTransportation
             // 
@@ -359,6 +417,7 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -382,16 +441,21 @@
         private GroupBox groupBox1;
         private DataGridView dataGridView2;
         private Button abfahrtensuchen;
-        private DataGridViewTextBoxColumn Von;
-        private DataGridViewTextBoxColumn Nach;
-        private DataGridViewTextBoxColumn abfahrt;
-        private DataGridViewTextBoxColumn ankunft;
-        private DataGridViewTextBoxColumn verspätung;
-        private DataGridViewTextBoxColumn gleis;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn nummer;
         private DataGridViewTextBoxColumn name;
         private ComboBox stationcomboBox;
         private Button aufkarteBtn;
+        private Button button2;
+        private DataGridView dataGridView3;
+        private DataGridViewTextBoxColumn bahnhof;
+        private DataGridViewTextBoxColumn distanz;
+        private DataGridViewTextBoxColumn Von;
+        private DataGridViewTextBoxColumn Nach;
+        private DataGridViewTextBoxColumn abfahrt;
+        private DataGridViewTextBoxColumn ankunft;
+        private DataGridViewTextBoxColumn gleis;
+        private Button email;
+        private Button moreConnections;
     }
 }
