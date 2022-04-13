@@ -1,6 +1,7 @@
 namespace SwissTransport.Models
 {
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     public class StationBoard
     {

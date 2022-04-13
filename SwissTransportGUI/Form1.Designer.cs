@@ -36,6 +36,7 @@
             this.Nach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.abfahrt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ankunft = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verspätung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gleis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verbindungenBox = new System.Windows.Forms.GroupBox();
             this.nachComboBox = new System.Windows.Forms.ComboBox();
@@ -48,10 +49,21 @@
             this.nachLabel = new System.Windows.Forms.Label();
             this.vonLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.stationcomboBox = new System.Windows.Forms.ComboBox();
+            this.abfahrtensuchen = new System.Windows.Forms.Button();
+            this.aufkarteBtn = new System.Windows.Forms.Button();
             this.Fahrplan.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.verbindungenBox.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Fahrplan
@@ -87,6 +99,7 @@
             this.Nach,
             this.abfahrt,
             this.ankunft,
+            this.verspätung,
             this.gleis});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 228);
@@ -116,6 +129,11 @@
             // 
             this.ankunft.HeaderText = "Ankunft";
             this.ankunft.Name = "ankunft";
+            // 
+            // verspätung
+            // 
+            this.verspätung.HeaderText = "Verspätung";
+            this.verspätung.Name = "verspätung";
             // 
             // gleis
             // 
@@ -239,6 +257,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
@@ -247,6 +267,77 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stationssuche";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.nummer,
+            this.name});
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 199);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 25;
+            this.dataGridView2.Size = new System.Drawing.Size(900, 364);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nach";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // nummer
+            // 
+            this.nummer.HeaderText = "Zug Nr.";
+            this.nummer.Name = "nummer";
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Operator";
+            this.name.Name = "name";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.aufkarteBtn);
+            this.groupBox1.Controls.Add(this.stationcomboBox);
+            this.groupBox1.Controls.Add(this.abfahrtensuchen);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(900, 195);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Station suchen";
+            // 
+            // stationcomboBox
+            // 
+            this.stationcomboBox.FormattingEnabled = true;
+            this.stationcomboBox.Location = new System.Drawing.Point(18, 44);
+            this.stationcomboBox.Name = "stationcomboBox";
+            this.stationcomboBox.Size = new System.Drawing.Size(259, 28);
+            this.stationcomboBox.TabIndex = 2;
+            this.stationcomboBox.TextUpdate += new System.EventHandler(this.VorschlageStation);
+            // 
+            // abfahrtensuchen
+            // 
+            this.abfahrtensuchen.Location = new System.Drawing.Point(295, 44);
+            this.abfahrtensuchen.Name = "abfahrtensuchen";
+            this.abfahrtensuchen.Size = new System.Drawing.Size(154, 27);
+            this.abfahrtensuchen.TabIndex = 1;
+            this.abfahrtensuchen.Text = "suche Abfahrten";
+            this.abfahrtensuchen.UseVisualStyleBackColor = true;
+            this.abfahrtensuchen.Click += new System.EventHandler(this.abfahrtensuchen_Click);
+            // 
+            // aufkarteBtn
+            // 
+            this.aufkarteBtn.Location = new System.Drawing.Point(18, 78);
+            this.aufkarteBtn.Name = "aufkarteBtn";
+            this.aufkarteBtn.Size = new System.Drawing.Size(259, 28);
+            this.aufkarteBtn.TabIndex = 3;
+            this.aufkarteBtn.Text = "Stationen auf der Karte sehen";
+            this.aufkarteBtn.UseVisualStyleBackColor = true;
+            this.aufkarteBtn.Click += new System.EventHandler(this.aufkarteBtn_Click);
             // 
             // MyTransportation
             // 
@@ -265,6 +356,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.verbindungenBox.ResumeLayout(false);
             this.verbindungenBox.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -283,12 +377,21 @@
         private Button button1;
         private DataGridView dataGridView1;
         private DateTimePicker timePicker;
+        private ComboBox vonComboBox;
+        private ComboBox nachComboBox;
+        private GroupBox groupBox1;
+        private DataGridView dataGridView2;
+        private Button abfahrtensuchen;
         private DataGridViewTextBoxColumn Von;
         private DataGridViewTextBoxColumn Nach;
         private DataGridViewTextBoxColumn abfahrt;
         private DataGridViewTextBoxColumn ankunft;
+        private DataGridViewTextBoxColumn verspätung;
         private DataGridViewTextBoxColumn gleis;
-        private ComboBox vonComboBox;
-        private ComboBox nachComboBox;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn nummer;
+        private DataGridViewTextBoxColumn name;
+        private ComboBox stationcomboBox;
+        private Button aufkarteBtn;
     }
 }

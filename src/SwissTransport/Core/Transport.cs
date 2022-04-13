@@ -23,6 +23,12 @@
             return this.GetObject<Stations>(uri);
         }
 
+        public Stations GetAllStations(string query)
+        {
+            var uri = new Uri($"{WebApiHost}locations");
+            return this.GetObject<Stations>(uri);
+        }
+
         public StationBoardRoot GetStationBoard(string station, string id)
         {
             if (string.IsNullOrEmpty(station))
