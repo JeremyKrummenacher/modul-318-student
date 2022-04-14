@@ -18,6 +18,7 @@ namespace SwissTransportGUI
         }
         public ITransport transport = new Transport();
         public int anzeigeAnzahl = 4;
+        List<Connection> emailList = new List<Connection>();
         private void MyTransportation_Load(object sender, EventArgs e)
         {
             this.timePicker.CustomFormat = "hh:mm";
@@ -41,14 +42,16 @@ namespace SwissTransportGUI
                 Connections verbindungenreturns = neueSuche.StationVerbindungSuche(von, nach, zeitDatum, uhrzeit);
                 try
                 {
-                    List<Connection> verbindungrückgabliste = verbindungenreturns.ConnectionList;
+                    List<Connection> verbindungrueckgabliste = verbindungenreturns.ConnectionList;
 
-                    foreach (Connection einzelneverbindung in verbindungrückgabliste.Take(anzeigeAnzahl))
+                    foreach (Connection einzelneverbindung in verbindungrueckgabliste.Take(anzeigeAnzahl))
                     {
                         dataGridView1.Rows.Add(einzelneverbindung.From.Station.Name, einzelneverbindung.To.Station.Name, Convert.ToDateTime(einzelneverbindung.From.Departure).ToString("HH:mm"), Convert.ToDateTime(einzelneverbindung.To.Arrival).ToString("HH:mm"), einzelneverbindung.To.Platform);
                     }
                     emailBtn.Enabled = true;
+                    emailList = verbindungrueckgabliste;
                     moreConnections.Enabled = true;
+
                 }
                 catch
                 {
@@ -175,16 +178,15 @@ namespace SwissTransportGUI
 
         private void emailBtn_Click(object sender, EventArgs e)
         {
-            Email email = new Email();
-            email.ShowDialog();
-        }
+            string emailBody = "";
 
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var dataIndexNo = dataGridView1.Rows[e.RowIndex].Index.ToString();
-            string cellValue = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            MessageBox.Show("The row index = " + dataIndexNo.ToString() + " and the row data in second column is: "
-                + cellValue.ToString());
+            foreach (Connection verbindungrueckgabliste in emailList)
+            {
+                string row = verbindungrueckgabliste.From.Station.Name + "|" + verbindungrueckgabliste.To.Station.Name + "|" + Convert.ToDateTime(verbindungrueckgabliste.From.Departure).ToString("HH:mm") + "/";
+                emailBody += row;
+            }
+            Email email = new Email(emailBody);
+            email.ShowDialog();
         }
 
         private void moreConnections_Click(object sender, EventArgs e)

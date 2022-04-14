@@ -13,15 +13,11 @@ namespace SwissTransportGUI
 {
     public partial class Email : Form
     {
-        public Email()
+        string emailList;
+        public Email(string list)
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
+            this.emailList = list;
         }
 
         private void absendenBtn_Click(object sender, EventArgs e)
@@ -32,6 +28,12 @@ namespace SwissTransportGUI
                 string addMail = AntextBox.Text;
                 string subject = BetrefftextBox.Text;
                 string body = richTextBox1.Text;
+
+                List<string> emailRows = emailList.Split('/').ToList();
+                foreach (string emailRow in emailRows)
+                {
+                    body += emailRow.Replace('|', ' ') + "\n";
+                }
 
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
