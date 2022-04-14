@@ -43,7 +43,7 @@
             this.nachComboBox = new System.Windows.Forms.ComboBox();
             this.vonComboBox = new System.Windows.Forms.ComboBox();
             this.timePicker = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnVerbindungAnzeigen = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -148,7 +148,7 @@
             this.verbindungenBox.Controls.Add(this.nachComboBox);
             this.verbindungenBox.Controls.Add(this.vonComboBox);
             this.verbindungenBox.Controls.Add(this.timePicker);
-            this.verbindungenBox.Controls.Add(this.button1);
+            this.verbindungenBox.Controls.Add(this.btnVerbindungAnzeigen);
             this.verbindungenBox.Controls.Add(this.label2);
             this.verbindungenBox.Controls.Add(this.label1);
             this.verbindungenBox.Controls.Add(this.dateTimePicker1);
@@ -182,7 +182,7 @@
             this.emailBtn.Name = "emailBtn";
             this.emailBtn.Size = new System.Drawing.Size(143, 40);
             this.emailBtn.TabIndex = 12;
-            this.emailBtn.Text = "email schicken";
+            this.emailBtn.Text = "Teilen 📧";
             this.emailBtn.UseVisualStyleBackColor = true;
             this.emailBtn.Click += new System.EventHandler(this.emailBtn_Click);
             // 
@@ -220,18 +220,18 @@
             this.timePicker.Size = new System.Drawing.Size(93, 27);
             this.timePicker.TabIndex = 9;
             // 
-            // button1
+            // btnVerbindungAnzeigen
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(18, 171);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(207, 40);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Verbindungen anzeigen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnVerbindungAnzeigen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnVerbindungAnzeigen.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnVerbindungAnzeigen.Location = new System.Drawing.Point(18, 171);
+            this.btnVerbindungAnzeigen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnVerbindungAnzeigen.Name = "btnVerbindungAnzeigen";
+            this.btnVerbindungAnzeigen.Size = new System.Drawing.Size(207, 40);
+            this.btnVerbindungAnzeigen.TabIndex = 8;
+            this.btnVerbindungAnzeigen.Text = "Verbindungen anzeigen";
+            this.btnVerbindungAnzeigen.UseVisualStyleBackColor = true;
+            this.btnVerbindungAnzeigen.Click += new System.EventHandler(this.btnVerbindungenAnzeigen_Click);
             // 
             // label2
             // 
@@ -295,7 +295,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Size = new System.Drawing.Size(906, 572);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Stationssuche";
+            this.tabPage2.Text = "Station-Abfahrtspan";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
@@ -439,7 +439,7 @@
         private DateTimePicker dateTimePicker1;
         private Label label2;
         private Label label1;
-        private Button button1;
+        private Button btnVerbindungAnzeigen;
         private DataGridView dataGridView1;
         private DateTimePicker timePicker;
         private ComboBox vonComboBox;

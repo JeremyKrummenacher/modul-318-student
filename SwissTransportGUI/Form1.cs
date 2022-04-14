@@ -9,7 +9,12 @@ namespace SwissTransportGUI
         public MyTransportation()
         {
             InitializeComponent();
+            btnVerbindungAnzeigen.Enabled = true;
             emailBtn.Enabled = false;
+            aufkarteBtn.Enabled = false;
+            moreConnections.Enabled = false;
+            this.MinimumSize = new Size(870, 300);
+            
         }
         public ITransport transport = new Transport();
         public int anzeigeAnzahl = 4;
@@ -21,32 +26,38 @@ namespace SwissTransportGUI
             this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnVerbindungenAnzeigen_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-            dataGridView1.Refresh();
-            Stationssuche neueSuche = new Stationssuche();
-            string von = vonComboBox.Text;
-            string nach = nachComboBox.Text;
-            DateTime zeitDatum = dateTimePicker1.Value;
-            DateTime uhrzeit = timePicker.Value;
-
-            Connections verbindungenreturns = neueSuche.StationVerbindungSuche(von, nach, zeitDatum, uhrzeit);
-            try
+            if (vonComboBox.Text != "" && nachComboBox.Text != "")
             {
-                List<Connection> verbindungrückgabliste = verbindungenreturns.ConnectionList;
+                dataGridView1.Rows.Clear();
+                dataGridView1.Refresh();
+                Stationssuche neueSuche = new Stationssuche();
+                string von = vonComboBox.Text;
+                string nach = nachComboBox.Text;
+                DateTime zeitDatum = dateTimePicker1.Value;
+                DateTime uhrzeit = timePicker.Value;
 
-                foreach (Connection einzelneverbindung in verbindungrückgabliste.Take(anzeigeAnzahl))
+                Connections verbindungenreturns = neueSuche.StationVerbindungSuche(von, nach, zeitDatum, uhrzeit);
+                try
                 {
-                    dataGridView1.Rows.Add(einzelneverbindung.From.Station.Name, einzelneverbindung.To.Station.Name, Convert.ToDateTime(einzelneverbindung.From.Departure).ToString("HH:mm"), Convert.ToDateTime(einzelneverbindung.To.Arrival).ToString("HH:mm"), einzelneverbindung.To.Platform);
+                    List<Connection> verbindungrückgabliste = verbindungenreturns.ConnectionList;
+
+                    foreach (Connection einzelneverbindung in verbindungrückgabliste.Take(anzeigeAnzahl))
+                    {
+                        dataGridView1.Rows.Add(einzelneverbindung.From.Station.Name, einzelneverbindung.To.Station.Name, Convert.ToDateTime(einzelneverbindung.From.Departure).ToString("HH:mm"), Convert.ToDateTime(einzelneverbindung.To.Arrival).ToString("HH:mm"), einzelneverbindung.To.Platform);
+                    }
+                    emailBtn.Enabled = true;
+                    moreConnections.Enabled = true;
                 }
-                emailBtn.Enabled = true;
+                catch
+                {
+                    MessageBox.Show("Keine Verbindung gefunden");
+                    return;
+                }
             }
-            catch
-            {
-                MessageBox.Show("Keine Verbindung gefunden");
-                return;
-            }
+            else { MessageBox.Show("inkorrekte Eingabe"); }
+            
         }
 
         private void Vorschlage(object sender, EventArgs e)
@@ -67,6 +78,10 @@ namespace SwissTransportGUI
                 }
                 catch { }
                 vonComboBox.Focus();
+                /*if (vonComboBox.DroppedDown == false)
+                {
+                    vonComboBox.DroppedDown = true;
+                }*/
                 vonComboBox.SelectionStart = vonComboBox.Text.Length;
             }
             catch { return; }
@@ -120,26 +135,30 @@ namespace SwissTransportGUI
 
         private void abfahrtensuchen_Click(object sender, EventArgs e)
         {
-            dataGridView2.Rows.Clear();
-            Stationssuche neueSuche = new Stationssuche();
-            Stationssuche suchResultat = neueSuche.Abfahrtsplansuche(stationcomboBox.Text, neueSuche);
-
-            try
+            if(stationcomboBox.Text != "")
             {
-                StationBoardRoot alleVerbindungen = suchResultat.getVerbindungen();
-                List<StationBoard> verbindungsliste = alleVerbindungen.Entries;
+                dataGridView2.Rows.Clear();
+                Stationssuche neueSuche = new Stationssuche();
+                Stationssuche suchResultat = neueSuche.Abfahrtsplansuche(stationcomboBox.Text, neueSuche);
 
-                foreach (StationBoard Ausgehendeverbindung in verbindungsliste)
+                try
                 {
-                    dataGridView2.Rows.Add(Ausgehendeverbindung.To, Ausgehendeverbindung.Category + Ausgehendeverbindung.Number, Ausgehendeverbindung.Operator);
+                    StationBoardRoot alleVerbindungen = suchResultat.getVerbindungen();
+                    List<StationBoard> verbindungsliste = alleVerbindungen.Entries;
+
+                    foreach (StationBoard Ausgehendeverbindung in verbindungsliste)
+                    {
+                        dataGridView2.Rows.Add(Ausgehendeverbindung.To, Ausgehendeverbindung.Category + Ausgehendeverbindung.Number, Ausgehendeverbindung.Operator);
+                    }
+                    aufkarteBtn.Enabled = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Keine Resultate gefunden!");
+                    return;
                 }
             }
-            catch
-            {
-                MessageBox.Show("Keine Resultate gefunden!");
-                return;
-            }
-
+            else { MessageBox.Show("inkorrekte Eingabe"); }
         }
 
         private void aufkarteBtn_Click(object sender, EventArgs e)
@@ -166,11 +185,6 @@ namespace SwissTransportGUI
             string cellValue = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             MessageBox.Show("The row index = " + dataIndexNo.ToString() + " and the row data in second column is: "
                 + cellValue.ToString());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void moreConnections_Click(object sender, EventArgs e)

@@ -21,11 +21,16 @@ namespace SwissTransportGUI
         private void button1_Click(object sender, EventArgs e)
         {
 
+
+        }
+
+        private void absendenBtn_Click(object sender, EventArgs e)
+        {
             try
             {
 
-                string addMail = textBox1.Text;
-                string subject = textBox2.Text;
+                string addMail = AntextBox.Text;
+                string subject = BetrefftextBox.Text;
                 string body = richTextBox1.Text;
 
                 MailMessage mail = new MailMessage();
@@ -44,19 +49,19 @@ namespace SwissTransportGUI
                 MessageBox.Show("mail Send");
 
 
-                textBox1.Text = "";
-                textBox2.Text = "";
+                AntextBox.Text = "";
+                BetrefftextBox.Text = "";
                 richTextBox1.Text = "";
 
                 this.Close();
             }
             catch
             {
-                if (textBox1.Text == "")
+                if (AntextBox.Text == "")
                 {
                     MessageBox.Show("Geben Sie eine E-Mailadresse ein: ");
                 }
-                else if (textBox2.Text == "")
+                else if (BetrefftextBox.Text == "")
                 {
                     MessageBox.Show("Geben Sie ein Betreff ein: ");
                 }
