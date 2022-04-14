@@ -18,7 +18,6 @@ namespace SwissTransportGUI
         {
             InitializeComponent();
             this.emailList = list;
-            //test
         }
 
         private void absendenBtn_Click(object sender, EventArgs e)

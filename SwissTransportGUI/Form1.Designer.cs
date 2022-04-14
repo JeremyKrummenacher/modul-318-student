@@ -169,7 +169,7 @@
             this.moreConnections.Location = new System.Drawing.Point(688, 191);
             this.moreConnections.Name = "moreConnections";
             this.moreConnections.Size = new System.Drawing.Size(212, 33);
-            this.moreConnections.TabIndex = 13;
+            this.moreConnections.TabIndex = 7;
             this.moreConnections.Text = "weitere Verbindungen sehen";
             this.moreConnections.UseVisualStyleBackColor = true;
             this.moreConnections.Click += new System.EventHandler(this.moreConnections_Click);
@@ -180,7 +180,7 @@
             this.emailBtn.Location = new System.Drawing.Point(231, 171);
             this.emailBtn.Name = "emailBtn";
             this.emailBtn.Size = new System.Drawing.Size(143, 40);
-            this.emailBtn.TabIndex = 12;
+            this.emailBtn.TabIndex = 6;
             this.emailBtn.Text = "Teilen 📧";
             this.emailBtn.UseVisualStyleBackColor = true;
             this.emailBtn.Click += new System.EventHandler(this.emailBtn_Click);
@@ -194,7 +194,7 @@
             this.nachComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.nachComboBox.Name = "nachComboBox";
             this.nachComboBox.Size = new System.Drawing.Size(252, 28);
-            this.nachComboBox.TabIndex = 11;
+            this.nachComboBox.TabIndex = 2;
             this.nachComboBox.TextUpdate += new System.EventHandler(this.VoerschlaegeNach);
             // 
             // vonComboBox
@@ -205,7 +205,7 @@
             this.vonComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.vonComboBox.Name = "vonComboBox";
             this.vonComboBox.Size = new System.Drawing.Size(265, 28);
-            this.vonComboBox.TabIndex = 10;
+            this.vonComboBox.TabIndex = 0;
             this.vonComboBox.TextUpdate += new System.EventHandler(this.Vorschlage);
             // 
             // timePicker
@@ -217,7 +217,7 @@
             this.timePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.timePicker.Name = "timePicker";
             this.timePicker.Size = new System.Drawing.Size(93, 27);
-            this.timePicker.TabIndex = 9;
+            this.timePicker.TabIndex = 4;
             // 
             // btnVerbindungAnzeigen
             // 
@@ -227,7 +227,7 @@
             this.btnVerbindungAnzeigen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnVerbindungAnzeigen.Name = "btnVerbindungAnzeigen";
             this.btnVerbindungAnzeigen.Size = new System.Drawing.Size(207, 40);
-            this.btnVerbindungAnzeigen.TabIndex = 8;
+            this.btnVerbindungAnzeigen.TabIndex = 5;
             this.btnVerbindungAnzeigen.Text = "Verbindungen anzeigen";
             this.btnVerbindungAnzeigen.UseVisualStyleBackColor = true;
             this.btnVerbindungAnzeigen.Click += new System.EventHandler(this.btnVerbindungenAnzeigen_Click);
@@ -261,7 +261,7 @@
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(265, 27);
-            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.TabIndex = 3;
             // 
             // nachLabel
             // 
@@ -373,6 +373,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Die nächst gelegene Station suchen";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // aufkarteBtn
             // 
@@ -390,7 +391,7 @@
             this.stationcomboBox.Location = new System.Drawing.Point(18, 44);
             this.stationcomboBox.Name = "stationcomboBox";
             this.stationcomboBox.Size = new System.Drawing.Size(259, 28);
-            this.stationcomboBox.TabIndex = 2;
+            this.stationcomboBox.TabIndex = 1;
             this.stationcomboBox.TextUpdate += new System.EventHandler(this.VorschlageStation);
             // 
             // abfahrtensuchen
@@ -398,7 +399,7 @@
             this.abfahrtensuchen.Location = new System.Drawing.Point(283, 45);
             this.abfahrtensuchen.Name = "abfahrtensuchen";
             this.abfahrtensuchen.Size = new System.Drawing.Size(154, 27);
-            this.abfahrtensuchen.TabIndex = 1;
+            this.abfahrtensuchen.TabIndex = 2;
             this.abfahrtensuchen.Text = "suche Abfahrten";
             this.abfahrtensuchen.UseVisualStyleBackColor = true;
             this.abfahrtensuchen.Click += new System.EventHandler(this.abfahrtensuchen_Click);

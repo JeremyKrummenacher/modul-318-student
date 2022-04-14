@@ -45,6 +45,27 @@
             return this.GetObject<StationBoardRoot>(uri);
         }
 
+        public Stations GetNearestStations()
+        {
+            string[] location = this.GetPlainText(new Uri($"http://ip-api.com/line/?fields=lat,lon")).Split("\n");
+
+            var uri = new Uri($"{WebApiHost}locations?x={location[0]}&y={location[1]}");
+            return this.GetObject<Stations>(uri);
+        }
+        private string GetPlainText(Uri uri)
+        {
+            HttpResponseMessage response = this.httpClient
+                .GetAsync(uri)
+                .GetAwaiter()
+                .GetResult();
+            string content = response.Content
+                .ReadAsStringAsync()
+                .GetAwaiter()
+                .GetResult();
+
+            return content;
+        }
+
         public Connections GetConnections(string fromStation, string toStation, string date, string time)
         {
             if (string.IsNullOrEmpty(fromStation))

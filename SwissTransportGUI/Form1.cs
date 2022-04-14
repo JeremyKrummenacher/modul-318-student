@@ -216,5 +216,23 @@ namespace SwissTransportGUI
                 return;
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView3.Rows.Clear();
+                List<Station> stations = transport.GetNearestStations().StationList;
+
+                foreach (Station station in stations)
+                {
+                    dataGridView3.Rows.Add(station.Name, station.Distance + "m");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nearest Station Finder", "Error while trying to fetch nearest stations");
+            }
+        }
     }
 }

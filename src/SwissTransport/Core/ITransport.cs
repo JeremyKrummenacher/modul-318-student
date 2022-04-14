@@ -7,6 +7,8 @@
     {
         Stations GetStations(string query);
 
+        Stations GetNearestStations();
+
         StationBoardRoot GetStationBoard(string station, string id);
 
         Connections GetConnections(string fromStation, string toStation, string Date, string time);
